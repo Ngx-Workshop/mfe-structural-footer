@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatButtonModule],
   template: `
     <footer class="footer">
+      Hello from <strong>ngx-footer-mfe</strong>! This is a microfrontend
       <a
         class="docs-footer-greeting"
         href="https://github.com/Ba5ik7/ngx-workshop"
