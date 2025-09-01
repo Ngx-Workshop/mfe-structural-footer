@@ -1,4 +1,4 @@
-name: Deploy Ngx-Footer-MFE to DO Droplet
+name: Deploy MFE Structural Footer to DO Droplet
 
 on:
   push:
@@ -29,8 +29,8 @@ jobs:
           host: ${{ secrets.DROPLET_IP }}
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/ngx-footer-mfe/*"
-          target: "/opt/ngx-angular-shell/remotes/ngx-footer-mfe/"
+          source: 'dist/MFE Structural Footer/*'
+          target: '/opt/mfe-remotes/MFE Structural Footer/'
           strip_components: 2
 
       - name: SSH and reload Nginx (optional)
