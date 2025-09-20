@@ -54,7 +54,7 @@ import type { StructuralOverrideMode } from '@tmdjr/ngx-mfe-orchestrator-contrac
 export class App {
   protected title = 'ngx-footer-mfe';
 
-  mode = input<StructuralOverrideMode>('full');
+  mode = input<StructuralOverrideMode>('disabled');
 }
 
 // 👇 **IMPORTANT FOR DYMANIC LOADING**
