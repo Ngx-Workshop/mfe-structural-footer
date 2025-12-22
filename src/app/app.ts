@@ -1,13 +1,15 @@
-import { Component, input } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import type { StructuralOverrideMode } from '@tmdjr/ngx-mfe-orchestrator-contracts';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'ngx-footer-mfe',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, AsyncPipe],
   template: `
-    @if(mode() != 'disabled') {
+    @if((mode$ | async) !== 'disabled') {
     <footer class="footer">
       <a
         class="docs-footer-greeting"
@@ -52,9 +54,19 @@ import type { StructuralOverrideMode } from '@tmdjr/ngx-mfe-orchestrator-contrac
   ],
 })
 export class App {
-  protected title = 'ngx-footer-mfe';
+  @Input()
+  set role(value: 'admin' | 'publisher' | 'regular' | 'none') {
+    this.role$.next(value);
+  }
+  role$ = new BehaviorSubject<'admin' | 'publisher' | 'regular' | 'none'>(
+    'none'
+  );
 
-  mode = input<StructuralOverrideMode>('disabled');
+  @Input()
+  set mode(value: StructuralOverrideMode) {
+    this.mode$.next(value);
+  }
+  mode$ = new BehaviorSubject<StructuralOverrideMode>('disabled');
 }
 
 // 👇 **IMPORTANT FOR DYMANIC LOADING**
